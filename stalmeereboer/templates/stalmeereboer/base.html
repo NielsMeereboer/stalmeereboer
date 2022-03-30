@@ -21,17 +21,22 @@
 
 
 
+
+
   <body style="background-image:url('{% static 'stalmeereboer/images/greengrass.jpg' %}'); background-repeat: no-repeat; background-size: cover;">
   <header>
-    <nav class="navbar navbar-expand-sm">
-        <div class="container-fluid">
-          <a class="navbar-brand white-text" href="/">Stal Meereboer</a>
-          <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="navbar"
-                  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="navbar-collapse collapse" id="navbar">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="/">Stal Meereboer</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link white-text" aria-current="page" href="/">Home</a>
               </li>
@@ -39,15 +44,15 @@
                 <a class="nav-link white-text" href="/about">About</a>
               </li>
               <!--- DROPDOWN --->
-              <li class="dropdown" id="ponies">
-                    <a class="nav-link dropdown-toggle white-text" data-toggle="dropdown" href="#ponies">
+              <li class="dropdown bg-dark">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#ponies">
                     Ponies
                     <b class="caret"></b>
                     </a>
-                    <ul class="dropdown-menu white=" id="ponies">
-                        <li><a class="nav-link white-text" href="/hengsten">Hengsten</a></li>
-                        <li><a class="nav-link white-text" href="/merries">Merries</a></li>
-                        <li><a class="nav-link white-text" href="/veulens">Veulens</a></li>
+                    <ul class="dropdown-menu bg-dark">
+                        <li><a class="nav-link" href="/hengsten">Hengsten</a></li>
+                        <li><a class="nav-link" href="/merries">Merries</a></li>
+                        <li><a class="nav-link" href="/veulens">Veulens</a></li>
                     </ul>
                 </li>
               <li class="nav-item">
@@ -56,22 +61,25 @@
               <li class="nav-item">
                 <a class="nav-link white-text" href="/contact">Contact</a>
               </li>
-            </ul>
-          </div>
+    </ul>
+  </div>
+</nav>
+</header>
+    <main role="main" class="container custompad">
+      <div class="row">
+        <div class="col-md-12">
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+          {% block content %}{% endblock %}
         </div>
-      </nav>
-  </header>
 
-      <div class="container">
-        <div>
-        {% block content %}{% endblock %}
-        </div>
       </div>
-  <footer>
-    <!-- Footer content -->
-
-
-  </footer>
+    </main>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
