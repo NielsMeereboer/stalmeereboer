@@ -3,19 +3,31 @@
 {% block content %}
 
 
-    {% for post in posts %}
-
-
+{% for post in posts %}
+<br>
+<br>
 <article class="content-section blogstyle">
-  <a class="mr-2">{{ post.date_posted|date:"F d, Y" }}</a>
-      <div class="media">
-        <img class="mr-3" src="{{ post.header_image.url }}">
-        <div class="media-body">
-          <h2><a class="mt-0 article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-          <p class="article-content">{{ post.content }}</p>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <a class="mr-2">{{ post.date_posted|date:"F d, Y" }}</a>
       </div>
+      <div class="col-md-9">
+        <h2><a class="mt-0 article-title" style="color:white;" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="media col-md-3">
+        <img class="img-fluid mr-3" src="{{ post.header_image.url }}">
+      </div>
+      <div class="col-md-9">
+        <p class="article-content">{{ post.content }}</p>
+      </div>
+    </div>
+  </div>
 </article>
+<br>
+
 
 
     {% endfor %}

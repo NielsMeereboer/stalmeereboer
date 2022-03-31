@@ -7,7 +7,7 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
-from .models import Post
+from .models import Post, Hengst
 
 
 def home(request):
@@ -76,3 +76,54 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 def contact(request):
     return render(request, 'stalmeereboer/contact.html')
+
+
+def hengsten(request):
+    context = {'hengsten': Hengst.objects.all()}
+    return render(request, 'stalmeereboer/hengsten.html', context)
+
+
+class HengstListView(ListView):
+    model = Hengst
+    template_name = 'stalmeereboer/hengsten.html'  # <app>/<model>_<viewtype>.html
+    context_object_name = 'hengsten'
+    paginate_by = 2
+
+
+class HengstDetailView(DetailView):
+    model = Hengst
+
+
+class HengstCreateView(LoginRequiredMixin, CreateView):
+    model = Hengst
+    fields = ['hengst_image', 'title', 'content']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+
+class HengstUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Hengst
+    fields = ['title', 'hengst_image', 'content']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
+
+
+class HengstDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Hengst
+    success_url = '/'
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False

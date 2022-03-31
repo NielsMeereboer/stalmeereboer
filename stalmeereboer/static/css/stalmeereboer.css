@@ -1,6 +1,15 @@
-.site-header {
-
+@media screen and (min-width:768px){
+        .navbar.navbar-nav{
+                float:none;
+                text-align:center;
+        }
+        .navbar.navbar-nav li{
+                display:inline-block;
+                float:none;
+        }
 }
+
+
 #ponies {
     background-color: #5A5A5A;
 }
@@ -10,7 +19,7 @@
 }
 
 .container {
-    width: 70%;
+    width: 100%;
     margin: 0 auto;
 
 }
@@ -35,22 +44,3 @@
     padding: 70px;
 }
 
-.footer {
-  position: relative;
-  margin-top: -150px; /* negative value of footer height */
-  height: 150px;
-  clear:both;
-  padding-top:20px;
-}
-
-@media (max-width: 991px){
-  .centerSection{
-    text-align:center;
-  }
-}
-
-@media (min-width: 992px){
-  .rightSection {
-    float:right;
-  }
-}

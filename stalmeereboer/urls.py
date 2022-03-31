@@ -4,7 +4,12 @@ from .views import (
     PostDetailView,
     PostCreateView,
     PostUpdateView,
-    PostDeleteView
+    PostDeleteView,
+    HengstListView,
+    HengstDetailView,
+    HengstCreateView,
+    HengstUpdateView,
+    HengstDeleteView
 )
 from . import views
 
@@ -19,5 +24,10 @@ urlpatterns = [
     path('post/<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),
     path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
     path('contact/', views.contact, name='stalmeereboer-contact'),
+    path('hengsten/', HengstListView.as_view(), name='stalmeereboer-hengsten'),
+    path('hengst/<int:pk>/', HengstDetailView.as_view(), name='hengst-detail'),
+    path('hengst/new/', HengstCreateView.as_view(), name='hengst-create'),
+    path('hengst/<int:pk>/update/', HengstUpdateView.as_view(), name='hengst-update'),
+    path('hengst/<int:pk>/delete/', HengstDeleteView.as_view(), name='hengst-delete'),
 
 ]
