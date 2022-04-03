@@ -22,8 +22,8 @@
 
 
 <body>
-          <header>
-            <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+     <header>
+            <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
               <!-- Brand -->
               <a class="navbar-brand" href="/">Stal Meereboer</a>
 
@@ -63,10 +63,10 @@
               </div>
             </nav>
         </header>
-    <main style="background-image:url('{% static 'stalmeereboer/images/greengrass.jpg' %}'); background-repeat: no-repeat; background-size: cover;">
+    <main style="background-image:url('{% static 'stalmeereboer/images/greengrass.jpg' %}'); min-height:900px ;background-repeat: no-repeat; background-size: cover;">
         <div class="container">
             <div class="row">
-                <div class col-lg>
+                <div class=col-lg>
                 {% block content %}{% endblock %}
                 </div>
             </div>

@@ -1,6 +1,44 @@
 {% extends "stalmeereboer/base.html" %}
 {% load static %}
 {% block content %}
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-5 blogstyle">
+            <img class="col-lg-12" src="{% static 'stalmeereboer/images/thuis.jpg' %}" alt="Paardenstal">
+            <div class="col-lg-12">
+                <br>
+                <h3>Adres:</h3>
+                <p>Stal Meereboer <br>Dorpsstraat 4a<br>9537 TC Eesergroen<br>0653992298</p>
+            </div>
+        </div>
+        <div class="col-lg-1">
 
+        </div>
+        <div class="col-lg-5 blogstyle">
+            <h3 class="text-white">Contact Formulier</h3>
+                <form method="POST" action="{% url 'stalmeereboer-contact'%}">
+                    {% csrf_token %}
+                  <div class="row">
+                      <div class="form-group col-lg-7">
+                          <input type="text" name="message-name" class="form-control mb-30" placeholder="Naam">
+                      </div>
+                      <div class="form-group col-lg-7">
+                          <input type="text" name="message-subject" class="form-control mb-30" placeholder="Onderwerp">
+                      </div>
+                      <div class="form-group col-lg-7">
+                          <input type="email" name="message-email" class="form-control mb-30" placeholder="E-mailadres">
+                      </div>
+                      <div class="form-group col-12">
+                          <textarea name="message" class="form-control mb-30" placeholder="Uw bericht"></textarea>
+                      </div>
+                      <div class="col-12">
+                          <button type="submit" class="btn waves-effect waves-light">Verzend</button>
+                      </div>
+                  </div>
+                </form>
+        </div>
+    </div>
+</div>
 
 {% endblock content %}

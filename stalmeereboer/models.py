@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
 from PIL import Image
+from django import forms
 
 
 class Post(models.Model):
@@ -33,6 +34,13 @@ class Hengst(models.Model):
     hengst_image = models.ImageField(null=True, blank=True, upload_to="hengstimages/")
     hengst_content = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    stokmaat = models.CharField(max_length=100, default='SOME STRING')
+    father_name = models.CharField(max_length=100, default='SOME STRING')
+    mother_name = models.CharField(max_length=100, default='SOME STRING')
+    fatherfather_name = models.CharField(max_length=100, default='SOME STRING')
+    fathermother_name = models.CharField(max_length=100, default='SOME STRING')
+    motherfather_name = models.CharField(max_length=100, default='SOME STRING')
+    mothermother_name = models.CharField(max_length=100, default='SOME STRING')
 
     def __str__(self):
         return self.hengst_title
@@ -48,3 +56,6 @@ class Hengst(models.Model):
 
     def get_absolute_url(self):
         return reverse('hengst-detail', kwargs={'pk': self.pk})
+
+
+

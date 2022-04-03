@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.core.mail import send_mail
+from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
     ListView,
@@ -8,6 +9,7 @@ from django.views.generic import (
     DeleteView
 )
 from .models import Post, Hengst
+
 
 
 def home(request):
@@ -75,7 +77,24 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 
 def contact(request):
-    return render(request, 'stalmeereboer/contact.html')
+
+    if request.method == "POST":
+        message_name = request.POST['message-name']
+        message_subject = request.POST['message-subject']
+        message_email = request.POST['message-email']
+        message = request.POST['message']
+        # send an email
+        send_mail(
+            message_name + " " + message_subject + " " + message_email,
+            message,
+            message_email,
+            ['stalmeereboer@gmail.com'],
+        )
+
+        return render(request, 'stalmeereboer/contact.html', {'message_name': message_name})
+
+    else:
+        return render(request, 'stalmeereboer/contact.html')
 
 
 def hengsten(request):
@@ -87,7 +106,7 @@ class HengstListView(ListView):
     model = Hengst
     template_name = 'stalmeereboer/hengsten.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'hengsten'
-    paginate_by = 2
+    paginate_by = 1
 
 
 class HengstDetailView(DetailView):
@@ -96,7 +115,8 @@ class HengstDetailView(DetailView):
 
 class HengstCreateView(LoginRequiredMixin, CreateView):
     model = Hengst
-    fields = ['hengst_image', 'title', 'content']
+    fields = ['hengst_image', 'title', 'stokmaat', 'content', 'father_name', 'mother_name',
+              'fatherfather_name', 'fathermother_name', 'motherfather_name', 'mothermother_name']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -105,7 +125,8 @@ class HengstCreateView(LoginRequiredMixin, CreateView):
 
 class HengstUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Hengst
-    fields = ['title', 'hengst_image', 'content']
+    fields = ['hengst_image', 'title', 'content', 'father_name', 'mother_name',
+              'fatherfather_name', 'fathermother_name', 'motherfather_name', 'mothermother_name']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -127,3 +148,6 @@ class HengstDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == post.author:
             return True
         return False
+
+
+

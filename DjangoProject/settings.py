@@ -72,6 +72,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'DjangoProject.wsgi.application'
 
+# myaccount.google.com/lesssecureapps
+#check 'How to send email with django -python django dentist website from codemy.com
+# email backend
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'stalmeereboer@gmail.com'
+EMAIL_HOST_PASSWORD = 'keniruanje'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
