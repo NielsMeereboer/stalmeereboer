@@ -43,8 +43,14 @@
   <div class="row">
     <div class="col-lg-3">
     </div>
-    <div class="col-lg-6 blogstyle shadow-lg" style="overflow-x: auto">
-      <table>
+    <div class="container blogstyle">
+        <div class="row">
+            <div class="col-lg-3">
+
+            </div>
+            <div class="col-lg-6">
+                <div class="col-lg-12 shadow-lg" style="overflow-x: auto">
+      <table class="justify-content-center">
           <tbody>
                 <tr>
                   <th class="text-center">Hengst</th>
@@ -87,10 +93,14 @@
                   <td></td>
                   <td class="line-bottom line-left-down" href="{% url 'hengst-detail' hengst.id %}">{{ hengst.mothermother_name }}</td>
                 </tr>
-
           </tbody>
       </table>
     </div>
+
+            </div>
+        </div>
+    </div>
+
     <div class="col-lg-3">
     </div>
   </div>
