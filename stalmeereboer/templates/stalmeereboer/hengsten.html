@@ -4,79 +4,92 @@
 {% for hengst in hengsten %}
 <br>
 <br>
-<article class="content-section blogstyle">
+<br>
+<article class="content-section blogstyle shadow-lg">
   <div class="container">
     <div class="row">
-      <div class="col-md-3">
-        <h2><a class="mt-0 article-title" style="color:white;" href="{% url 'hengst-detail' hengst.id %}">{{ hengst.hengst_title }}</a></h2>
+      <div class="col-lg-3">
+
       </div>
-      <div class="col-md-9">
-        <h2><a class="mt-0 article-title" href="{% url 'hengst-detail' hengst.id %}">{{ hengst.hengst_title }}</a></h2>
+      <div class="col-lg-9 text-center">
+        <h2><a style="color:white;" href="{% url 'hengst-detail' hengst.id %}">{{ hengst.hengst_title }}</a></h2>
       </div>
     </div>
     <div class="row">
-      <div class="media col-md-3">
-        <img class="img-fluid mr-3" src="{{ hengst.hengst_image.url }}">
+      <div class="media col-lg-3">
+        <img class="img-fluid mr-3 rounded25" src="{{ hengst.hengst_image.url }}">
       </div>
-      <div class="col-md-9">
-        <p class="article-content">{{ hengst.hengst_content }}</p>
+      <div class="col-lg-9">
+        <table>
+            <tbody>
+                <tr>
+                    <td>Stokmaat: </td>
+                    <td>{{ hengst.stokmaat }} cm</td>
+                </tr>
+                <tr>
+                    <td>Kleur: </td>
+                    <td>{{ hengst.kleur }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <p></p>
+        <p class="article-content text-justify">{{ hengst.hengst_content }}</p>
       </div>
     </div>
   </div>
 </article>
-<br>
+<br><br>
 <div class="container">
   <div class="row">
     <div class="col-lg-3">
     </div>
-    <div class="col-lg-6 blogstyle">
-        <table id="table">
-              <tbody>
+    <div class="col-lg-6 blogstyle shadow-lg" style="overflow-x: auto">
+      <table>
+          <tbody>
                 <tr>
-                  <th>Hengst</th>
-                  <th>Ouders</th>
-                  <th>Grootouders</th>
+                  <th class="text-center">Hengst</th>
+                  <th class="text-center">Ouders</th>
+                  <th class="text-center">Grootouders</th>
                 </tr>
-                <tr>
-                  <td rowspan="4" id="homePerson" class="person line-bottom" href="{% url 'hengst-detail' hengst.id %}">{{ hengst.hengst_title }}</td>
-                  <td rowspan="2" id="Father" class="person line-bottom" href="{% url 'hengst-detail' hengst.id %}">{{ hengst.father_name }}</td>
-                  <td id="Grandfather" class="person grand line-bottom">Grandfather</td>
-                  </tr>
-                  <tr>
-                  <td class="bio grandDate line-left-down">
 
-                  Date here</td>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td class="line-bottom"  href="{% url 'hengst-detail' hengst.id %}">{{ hengst.fatherfather_name }}</td>
                 </tr>
                 <tr>
-                <td rowspan="2" class="bio line-left-down"><progress value="100" max="100"></progress>
-                Date here</td>
-                <td class="person line-bottom grand line-left-up">Grandmother</td>
+                  <td></td>
+                  <td class="line-bottom" href="{% url 'hengst-detail' hengst.id %}">{{ hengst.father_name }}</td>
+                  <td class="line-left-down"></td>
                 </tr>
                 <tr>
-                <td class="bio grandDate line-left"><progress value="70" max="100">70 %</progress>
-                Date here</td>
+                  <td></td>
+                  <td class="line-left-down"></td>
+                  <td class="line-bottom line-left-down" href="{% url 'hengst-detail' hengst.id %}">{{ hengst.fathermother_name }}</td>
                 </tr>
                 <tr>
-                <td rowspan="4" class="bio"><progress value="78" max="100">78 %</progress>
-                1940 - 2018</td>
-                <td rowspan="2" class="person line-bottom line-left-up">Mother</td>
-                <td class="person grand line-bottom">Grandfather</td>
+                  <td class="line-bottom" href={% url 'hengst-detail' hengst.id %}">{{ hengst.hengst_title }}</td>
+                  <td class="line-left-down"></td>
+                  <td></td>
                 </tr>
                 <tr>
-                <td class="bio grandDate line-left-down"><progress value="70" max="100">70 %</progress>
-                Date Here</td>
+                  <td></td>
+                  <td class="line-left-down"></td>
+                  <td class="line-bottom"  href="{% url 'hengst-detail' hengst.id %}">{{ hengst.motherfather_name }}</td>
                 </tr>
                 <tr>
-                <td rowspan="2" class="bio"><progress value="70" max="100">70 %</progress>
-                Date Here</td>
-                <td class="person grand line-bottom line-left-up">Grandmother</td>
+                  <td></td>
+                  <td class="line-bottom line-left-down" href="{% url 'hengst-detail' hengst.id %}">{{ hengst.mother_name }}</td>
+                  <td class="line-left-down"></td>
                 </tr>
                 <tr>
-                <td class="bio grandDate line-left"><progress value="70" max="100">70 %</progress>
-                Date here</td>
+                  <td></td>
+                  <td></td>
+                  <td class="line-bottom line-left-down" href="{% url 'hengst-detail' hengst.id %}">{{ hengst.mothermother_name }}</td>
                 </tr>
-              </tbody>
-        </table>
+
+          </tbody>
+      </table>
     </div>
     <div class="col-lg-3">
     </div>

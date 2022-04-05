@@ -35,6 +35,7 @@ class Hengst(models.Model):
     hengst_content = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     stokmaat = models.CharField(max_length=100, default='SOME STRING')
+    kleur = models.CharField(max_length=100, default='SOME STRING')
     father_name = models.CharField(max_length=100, default='SOME STRING')
     mother_name = models.CharField(max_length=100, default='SOME STRING')
     fatherfather_name = models.CharField(max_length=100, default='SOME STRING')

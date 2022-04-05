@@ -115,7 +115,7 @@ class HengstDetailView(DetailView):
 
 class HengstCreateView(LoginRequiredMixin, CreateView):
     model = Hengst
-    fields = ['hengst_image', 'title', 'stokmaat', 'content', 'father_name', 'mother_name',
+    fields = ['hengst_image', 'title', 'stokmaat', 'kleur', 'content', 'father_name', 'mother_name',
               'fatherfather_name', 'fathermother_name', 'motherfather_name', 'mothermother_name']
 
     def form_valid(self, form):
@@ -125,7 +125,7 @@ class HengstCreateView(LoginRequiredMixin, CreateView):
 
 class HengstUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Hengst
-    fields = ['hengst_image', 'title', 'content', 'father_name', 'mother_name',
+    fields = ['hengst_image', 'title', 'stokmaat', 'kleur', 'content', 'father_name', 'mother_name',
               'fatherfather_name', 'fathermother_name', 'motherfather_name', 'mothermother_name']
 
     def form_valid(self, form):

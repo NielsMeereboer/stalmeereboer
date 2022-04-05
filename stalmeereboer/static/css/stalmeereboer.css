@@ -12,11 +12,11 @@
 
 
 #ponies {
-    background-color: #5A5A5A;
-}
+    background-color: #343434;
+    }
 
 .btn.secondary {
-    background-color: #5A5A5A;
+    background-color: #343434;
 }
 
 .container {
@@ -28,14 +28,16 @@
 
 }
 .blogstyle {
-        background-color: #5A5A5A;
+        background-color: #343434;
+        border-radius: 25px;
         opacity: 0.9;
         color: white;
         padding: 20px;
+        box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 15px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .navbar-custom {
-        background-color: #5A5A5A;
+        background-color: #343434;
         opacity: 0.5;
         color: white;
 
@@ -45,7 +47,9 @@
     padding: 70px;
 }
 
-
+.rounded25 {
+        border-radius: 25px;
+}
 
 
 h1 {
@@ -67,11 +71,11 @@ progress {
 }
   th,
   td {
-    vertical-align: bottom;
+    vertical-align: center;
   }
 
   th {
-    border-bottom: 2px solid black;
+    border-bottom: 3px solid green;
     text-align: left;
   }
 
@@ -89,18 +93,18 @@ progress {
   }
 
   .line-bottom {
-    border-bottom: 1px solid black;
+    border-bottom: 3px solid green;
   }
 
   .line-left-down {
-    border-left: 1px solid black;
+    border-left: 3px solid green;
   }
 
   .line-left-up {
-    border-left: 1px solid black;
+    border-left: 3px solid green;
   }
 
   .line-left {
-    border-left: 1px solid white;
+    border-left: 3px solid green;
   }
 }
