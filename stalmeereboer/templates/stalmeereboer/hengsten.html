@@ -11,16 +11,17 @@
       <div class="col-lg-3">
 
       </div>
-      <div class="col-lg-9 text-center">
-        <h2><a style="color:white;" href="{% url 'hengst-detail' hengst.id %}">{{ hengst.hengst_title }}</a></h2>
+      <div class="col-lg-9 text-center" style="border-bottom: 3px solid #9db0da;">
+        <h2><a style="color: white;" href="{% url 'hengst-detail' hengst.id %}">{{ hengst.hengst_title }}</a></h2>
+
       </div>
     </div>
     <div class="row">
       <div class="media col-lg-3">
-        <img class="img-fluid mr-3 rounded25" src="{{ hengst.hengst_image.url }}">
+        <img class="img-fluid mx-auto rounded25" style="padding-top: 10px;" src="{{ hengst.hengst_image.url }}">
       </div>
-      <div class="col-lg-9">
-        <table>
+      <div class="col-lg-9" style="padding-top: 5px;">
+        <table style="margin-left:auto;margin-right:auto;">
             <tbody>
                 <tr>
                     <td>Stokmaat: </td>
@@ -53,15 +54,15 @@
       <table class="justify-content-center">
           <tbody>
                 <tr>
-                  <th class="text-center">Hengst</th>
+                  <th class="text-center">Pony</th>
                   <th class="text-center">Ouders</th>
                   <th class="text-center">Grootouders</th>
                 </tr>
 
                 <tr>
-                  <td></td>
-                  <td></td>
-                  <td class="line-bottom"  href="{% url 'hengst-detail' hengst.id %}">{{ hengst.fatherfather_name }}</td>
+                  <td style="padding-top: 6px;"></td>
+                  <td style="padding-top: 6px;"></td>
+                  <td class="line-bottom" style="padding-top: 6px;" href="{% url 'hengst-detail' hengst.id %}">{{ hengst.fatherfather_name }}</td>
                 </tr>
                 <tr>
                   <td></td>
@@ -127,7 +128,7 @@
 
       {% if page_obj.has_next %}
         <a class="btn btn-secondary mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
-        <a class="btn btn-secondary   mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+        <a class="btn btn-secondary mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
       {% endif %}
 
     {% endif %}
