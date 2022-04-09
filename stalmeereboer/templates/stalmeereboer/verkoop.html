@@ -1,0 +1,46 @@
+{% extends "stalmeereboer/base.html" %}
+{% load static %}
+{% block content %}
+<br><br>
+<div class="container">
+
+    <div class="row justify-content-center">
+        {% for sale in sales %}
+
+        <div class="col-lg-5 blogstyle">
+            <img class="col-lg-12 rounded25" src="{{sale.image.url}}" alt="">
+            <div class="col-lg-12">
+                <br>
+                <div class="col-lg-12">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>Stokmaat: </td>
+                                    <td>{{ sale.stokmaat }} cm</td>
+                                </tr>
+                                <tr>
+                                    <td>Kleur: </td>
+                                    <td>{{ sale.kleur }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Prijs: </td>
+                                    <td>€ {{ sale.prijs }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p></p>
+                        <p class="article-content text-justify">{{ sale.description }}</p>
+                      </div>
+                <a href="{% url 'verkoop-detail' sale.id %}" class="btn btn-primary btn-md">Meer foto's</a>
+            </div>
+        </div>
+        <div class="col-lg-1">
+
+        </div>
+        <br>
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock %}
+

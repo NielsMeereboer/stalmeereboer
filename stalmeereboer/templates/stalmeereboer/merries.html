@@ -1,0 +1,135 @@
+{% extends "stalmeereboer/base.html" %}
+{% load static %}
+{% block content %}
+{% for merrie in merries %}
+<br>
+<br>
+<br>
+<article class="content-section blogstyle shadow-lg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+
+      </div>
+      <div class="col-lg-9 text-center" style="border-bottom: 3px solid #9db0da;">
+        <h2><a style="color: white;" href="{% url 'merrie-detail' merrie.id %}">{{ merrie.merrie_title }}</a></h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="media col-lg-3">
+        <img class="img-fluid mx-auto rounded25" style="padding-top: 10px;" src="{{ merrie.merrie_image.url }}">
+      </div>
+      <div class="col-lg-9" style="padding-top: 5px;">
+        <table style="margin-left:auto;margin-right:auto;">
+            <tbody>
+                <tr>
+                    <td>Stokmaat: </td>
+                    <td>{{ merrie.stokmaat }} cm</td>
+                </tr>
+                <tr>
+                    <td>Kleur: </td>
+                    <td>{{ merrie.kleur }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <p></p>
+        <p class="article-content text-justify">{{ merrie.merrie_content }}</p>
+      </div>
+    </div>
+  </div>
+</article>
+<br><br>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+    </div>
+    <div class="container blogstyle">
+        <div class="row">
+            <div class="col-lg-3">
+
+            </div>
+            <div class="col-lg-6">
+                <div class="col-lg-12 shadow-lg" style="overflow-x: auto">
+      <table class="justify-content-center">
+          <tbody>
+                <tr>
+                  <th class="text-center">Pony</th>
+                  <th class="text-center">Ouders</th>
+                  <th class="text-center">Grootouders</th>
+                </tr>
+
+                <tr>
+                  <td style="padding-top: 6px;"></td>
+                  <td style="padding-top: 6px;"></td>
+                  <td class="line-bottom" style="padding-top: 6px;" href="{% url 'merrie-detail' merrie.id %}">{{ merrie.fatherfather_name }}</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td class="line-bottom" href="{% url 'merrie-detail' merrie.id %}">{{ merrie.father_name }}</td>
+                  <td class="line-left-down"></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td class="line-left-down"></td>
+                  <td class="line-bottom line-left-down" href="{% url 'merrie-detail' merrie.id %}">{{ merrie.fathermother_name }}</td>
+                </tr>
+                <tr>
+                  <td class="line-bottom" href={% url 'merrie-detail' merrie.id %}">{{ merrie.merrie_title }}</td>
+                  <td class="line-left-down"></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td class="line-left-down"></td>
+                  <td class="line-bottom"  href="{% url 'merrie-detail' merrie.id %}">{{ merrie.motherfather_name }}</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td class="line-bottom line-left-down" href="{% url 'merrie-detail' merrie.id %}">{{ merrie.mother_name }}</td>
+                  <td class="line-left-down"></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td class="line-bottom line-left-down" href="{% url 'merrie-detail' merrie.id %}">{{ merrie.mothermother_name }}</td>
+                </tr>
+          </tbody>
+      </table>
+    </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3">
+    </div>
+  </div>
+</div>
+<br>
+
+
+
+    {% endfor %}
+    {% if is_paginated %}
+
+      {% if page_obj.has_previous %}
+        <a class="btn btn-secondary mb-4" href="?page=1">First</a>
+        <a class="btn btn-secondary mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+      {% endif %}
+
+      {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+          <a class="btn btn-secondary mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+          <a class="btn btn-secondary mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <a class="btn btn-secondary mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+        <a class="btn btn-secondary mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+      {% endif %}
+
+    {% endif %}
+
+{% endblock content %}
