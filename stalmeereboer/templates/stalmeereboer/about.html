@@ -1,19 +1,23 @@
 {% extends "stalmeereboer/base.html" %}
 {% load static %}
 {% block content %}
+{% for about in abouts %}
 <br><br><br>
-<div class="container">
-    <div class="row">
-        <div class="gallery_product col-lg-4 col-md-4 col-sm-6 col-xs-6 filter hdpe"><a href=""> <img src=https://res.cloudinary.com/dxfq3iotg/image/upload/v1564033828/Restaurant/img-1.jpg class="img-responsive"></a> </div>
-        <div class="gallery_product col-lg-4 col-md-4 col-sm-6 col-xs-6 filter sprinkle"><a href=""> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1564033829/Restaurant/img-6.jpg" class="img-responsive"></a> </div>
-        <div class="gallery_product col-lg-4 col-md-4 col-sm-6 col-xs-6 filter hdpe"><a href=""> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1564033828/Restaurant/img-3.jpg" class="img-responsive"></a> </div>
-        <div class="gallery_product col-lg-4 col-md-4 col-sm-6 col-xs-6 filter irrigation"><a href=""> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1564033828/Restaurant/img-4.jpg" class="img-responsive"></a> </div>
-        <div class="gallery_product col-lg-4 col-md-4 col-sm-6 col-xs-6 filter spray"><a href=""> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1564033828/Restaurant/img-5.jpg" class="img-responsive"></a> </div>
-        <div class="gallery_product col-lg-4 col-md-4 col-sm-6 col-xs-6 filter irrigation"><a href=""> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1564033829/Restaurant/img-2.jpg" class="img-responsive"></a> </div>
-        <div class="gallery_product col-lg-4 col-md-4 col-sm-6 col-xs-6 filter spray"><a href=""> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1564033829/Restaurant/img-7.jpg" class="img-responsive"></a> </div>
-        <div class="gallery_product col-lg-4 col-md-4 col-sm-6 col-xs-6 filter irrigation"><a href=""> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1564033828/Restaurant/img-3.jpg" class="img-responsive"></a> </div>
-        <div class="gallery_product col-lg-4 col-md-4 col-sm-6 col-xs-6 filter irrigation"><a href=""> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1564033828/Restaurant/img-5.jpg" class="img-responsive"></a> </div>
-    </div>
-</div>
+<article class="content-section blogstyle shadow-lg">
+       <div class="row">
+            <div class="media col-lg-5">
+                <img class="img-fluid rounded25 mr-1" src="{{ about.about_image.url }}">
+            </div>
+            <div class="col-lg-7" style="padding-top: 5px;">
+                <div class="text-center" style="border-bottom: 3px solid #9db0da;">
+                <h2 style="text-white"><a class="mt-0 article-title">{{ about.title }}</a></h2>
+                </div>
+                <div class="mt-2">
+                    <p class="article-content">{{ about.content }}</p>
+                </div>
+            </div>
+       </div>
+</article>
 
+{% endfor %}
 {% endblock content %}

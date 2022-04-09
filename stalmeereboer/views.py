@@ -8,7 +8,7 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
-from .models import Post, Hengst, Sale, PostImage
+from .models import Post, Hengst, Sale, PostImage, About, Merrie
 
 
 def home(request):
@@ -16,7 +16,8 @@ def home(request):
 
 
 def about(request):
-    return render(request, 'stalmeereboer/about.html')
+    context = {'abouts': About.objects.all()}
+    return render(request, 'stalmeereboer/about.html', context)
 
 
 def ponies(request):
@@ -160,3 +161,101 @@ def detail_view(request, id):
         'sale': sale,
         'photos': photos
     })
+
+
+class AboutListView(ListView):
+    model = About
+    template_name = 'stalmeereboer/about.html'  # <app>/<model>_<viewtype>.html
+    context_object_name = 'abouts'
+
+
+class AboutDetailView(DetailView):
+    model = About
+
+
+class AboutCreateView(LoginRequiredMixin, CreateView):
+    model = About
+    fields = ['about_image', 'title', 'content']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+
+class AboutUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = About
+    fields = ['title', 'about_image', 'content']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
+
+
+class AboutDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = About
+    success_url = '/'
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
+
+
+def merries(request):
+    context = {'merries': Merrie.objects.all()}
+    return render(request, 'stalmeereboer/merries.html', context)
+
+
+class MerrieListView(ListView):
+    model = Merrie
+    template_name = 'stalmeereboer/merries.html'  # <app>/<model>_<viewtype>.html
+    context_object_name = 'merries'
+    paginate_by = 1
+
+
+class MerrieDetailView(DetailView):
+    model = Merrie
+
+
+class MerrieCreateView(LoginRequiredMixin, CreateView):
+    model = Merrie
+    fields = ['merrie_image', 'title', 'stokmaat', 'kleur', 'content', 'father_name', 'mother_name',
+              'fatherfather_name', 'fathermother_name', 'motherfather_name', 'mothermother_name']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+
+class MerrieUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Merrie
+    fields = ['merrie_image', 'title', 'stokmaat', 'kleur', 'content', 'father_name', 'mother_name',
+              'fatherfather_name', 'fathermother_name', 'motherfather_name', 'mothermother_name']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
+
+
+class MerrieDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Merrie
+    success_url = '/'
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False

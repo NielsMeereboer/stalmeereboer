@@ -11,6 +11,16 @@ from .views import (
     HengstCreateView,
     HengstUpdateView,
     HengstDeleteView,
+    AboutListView,
+    AboutDetailView,
+    AboutCreateView,
+    AboutUpdateView,
+    AboutDeleteView,
+    MerrieListView,
+    MerrieDetailView,
+    MerrieCreateView,
+    MerrieUpdateView,
+    MerrieDeleteView,
 
 
 
@@ -18,7 +28,11 @@ from .views import (
 
 urlpatterns = [
     path('', views.home, name='stalmeereboer-home'),
-    path('about/', views.about, name='stalmeereboer-about'),
+    path('about/', AboutListView.as_view(), name='stalmeereboer-about'),
+    path('about/<int:pk>/', AboutDetailView.as_view(), name='about-detail'),
+    path('about/new/', AboutCreateView.as_view(), name='about-create'),
+    path('about/<int:pk>/update/', AboutUpdateView.as_view(), name='about-update'),
+    path('abouts/<int:pk>/delete/', AboutDeleteView.as_view(), name='about-delete'),
     path('contact/', views.contact, name='stalmeereboer-contact'),
     path('ponies/', views.ponies, name='stalmeereboer-ponies'),
     path('news/', PostListView.as_view(), name='stalmeereboer-news'),
@@ -32,6 +46,11 @@ urlpatterns = [
     path('hengst/<int:pk>/update/', HengstUpdateView.as_view(), name='hengst-update'),
     path('hengst/<int:pk>/delete/', HengstDeleteView.as_view(), name='hengst-delete'),
     path('verkoop/', views.sale_view, name='sale'),
-    path('verkoop/<int:id>/', views.detail_view, name='verkoop-detail')
+    path('verkoop/<int:id>/', views.detail_view, name='verkoop-detail'),
+    path('merries/', MerrieListView.as_view(), name='stalmeereboer-merries'),
+    path('merrie/<int:pk>/', MerrieDetailView.as_view(), name='merrie-detail'),
+    path('merrie/new/', MerrieCreateView.as_view(), name='merrie-create'),
+    path('merrie/<int:pk>/update/', MerrieUpdateView.as_view(), name='merrie-update'),
+    path('merrie/<int:pk>/delete/', MerrieDeleteView.as_view(), name='merrie-delete'),
 
 ]
