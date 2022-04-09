@@ -1,4 +1,5 @@
 from django.urls import path
+from . import views
 from .views import (
     PostListView,
     PostDetailView,
@@ -9,11 +10,11 @@ from .views import (
     HengstDetailView,
     HengstCreateView,
     HengstUpdateView,
-    HengstDeleteView
+    HengstDeleteView,
+
+
 
 )
-from . import views
-
 
 urlpatterns = [
     path('', views.home, name='stalmeereboer-home'),
@@ -30,5 +31,7 @@ urlpatterns = [
     path('hengst/new/', HengstCreateView.as_view(), name='hengst-create'),
     path('hengst/<int:pk>/update/', HengstUpdateView.as_view(), name='hengst-update'),
     path('hengst/<int:pk>/delete/', HengstDeleteView.as_view(), name='hengst-delete'),
+    path('verkoop/', views.sale_view, name='sale'),
+    path('verkoop/<int:id>/', views.detail_view, name='verkoop-detail')
 
 ]

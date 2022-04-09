@@ -59,4 +59,18 @@ class Hengst(models.Model):
         return reverse('hengst-detail', kwargs={'pk': self.pk})
 
 
+class Sale(models.Model):
+    title = models.CharField(max_length=250)
+    description = models.TextField()
+    image = models.FileField(blank=True)
 
+    def __str__(self):
+        return self.title
+
+
+class PostImage(models.Model):
+    sale = models.ForeignKey(Sale, default=None, on_delete=models.CASCADE)
+    images = models.FileField(upload_to='images/')
+
+    def __str__(self):
+        return self.sale.title

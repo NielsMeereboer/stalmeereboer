@@ -1,5 +1,5 @@
 from django.core.mail import send_mail
-from django.shortcuts import render, redirect
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
     ListView,
@@ -8,8 +8,7 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
-from .models import Post, Hengst
-
+from .models import Post, Hengst, Sale, PostImage
 
 
 def home(request):
@@ -77,7 +76,6 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 
 def contact(request):
-
     if request.method == "POST":
         message_name = request.POST['message-name']
         message_subject = request.POST['message-subject']
@@ -150,4 +148,15 @@ class HengstDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return False
 
 
+def sale_view(request):
+    sales = Sale.objects.all()
+    return render(request, 'stalmeereboer/verkoop.html', {'sales': sales})
 
+
+def detail_view(request, id):
+    sale = get_object_or_404(Sale, id=id)
+    photos = PostImage.objects.filter(sale=sale)
+    return render(request, 'stalmeereboer/verkoop_detail.html', {
+        'sale': sale,
+        'photos': photos
+    })
