@@ -4,24 +4,20 @@
 
 
 {% for post in posts %}
-<br><br><br>
+<br><br>
 
 <article class="content-section blogstyle">
   <div class="container">
     <div class="row">
-      <div class="col-md-3">
-        <a class="mr-2">{{ post.date_posted|date:"F d, Y" }}</a>
+      <div class="media col-lg-4">
+        <img class="img-fluid rounded25 mr-2 imagestyleabout" src="{{ post.header_image.url }}">
       </div>
-      <div class="col-md-9">
-        <h2><a class="mt-0 article-title" style="color:white;" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="media col-md-3">
-        <img class="img-fluid mr-3" src="{{ post.header_image.url }}">
-      </div>
-      <div class="col-md-9">
-        <p class="article-content">{{ post.content }}</p>
+      <div class="col-lg-8" style="padding-left: 40px; padding-right: 40px;">
+        <div>
+          <a >{{ post.date_posted|date:"F d, Y" }}</a>
+          <h2><a class="mt-0 article-title" style="color:white;" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+        </div>
+        <p class="article-content text-justify" style="height:250px; overflow-y: auto; border-top: 3px solid #9db0da; padding-top: 10px;">{{ post.content }}</p>
       </div>
     </div>
   </div>
@@ -31,25 +27,27 @@
 
 
     {% endfor %}
+<div class="shadow-lg col-lg-12 d-flex justify-content-center">
     {% if is_paginated %}
 
       {% if page_obj.has_previous %}
-        <a class="btn btn-secondary mb-4" href="?page=1">First</a>
-        <a class="btn btn-secondary mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        <a class="buttonstyle" href="?page=1">First</a>
+        <a class="buttonstyle" href="?page={{ page_obj.previous_page_number }}">Previous</a>
       {% endif %}
 
       {% for num in page_obj.paginator.page_range %}
         {% if page_obj.number == num %}
-          <a class="btn btn-secondary mb-4" href="?page={{ num }}">{{ num }}</a>
+          <a class="buttonstyle" href="?page={{ num }}">{{ num }}</a>
         {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-          <a class="btn btn-secondary mb-4" href="?page={{ num }}">{{ num }}</a>
+          <a class="buttonstyle" href="?page={{ num }}">{{ num }}</a>
         {% endif %}
       {% endfor %}
 
       {% if page_obj.has_next %}
-        <a class="btn btn-secondary mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
-        <a class="btn btn-secondary   mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+        <a class="buttonstyle" href="?page={{ page_obj.next_page_number }}">Next</a>
+        <a class="buttonstyle" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
       {% endif %}
 
     {% endif %}
+</div>
 {% endblock content %}

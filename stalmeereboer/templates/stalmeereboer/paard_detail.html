@@ -7,13 +7,13 @@
 
         {% if object.author == user %}
           <div>
-            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'about-update' object.id %}">Update</a>
-            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'about-delete' object.id %}">Delete</a>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'paard-update' object.id %}">Update</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'paard-delete' object.id %}">Delete</a>
           </div>
         {% endif %}
       </div>
-      <h2 class="article-title">{{ object.about_title }}</h2>
-      <p class="text-justify">{{ object.about_content }}</p>
+      <h2 class="article-title">{{ object.paard_title }}</h2>
+      <p class="article-content">{{ object.paard_content }}</p>
     </div>
   </article>
 {% endblock content %}

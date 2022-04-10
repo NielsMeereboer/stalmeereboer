@@ -1,135 +1,134 @@
 {% extends "stalmeereboer/base.html" %}
 {% load static %}
 {% block content %}
+<br>
+<br>
+<div class="container">
+    <div class="row justify-content-center">
 {% for hengst in hengsten %}
 <br>
-<br>
-<br>
-<article class="content-section blogstyle shadow-lg">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-3">
-
-      </div>
-      <div class="col-lg-9 text-center" style="border-bottom: 3px solid #9db0da;">
-        <h2><a style="color: white;" href="{% url 'hengst-detail' hengst.id %}">{{ hengst.hengst_title }}</a></h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="media col-lg-3">
-        <img class="img-fluid mx-auto rounded25" style="padding-top: 10px;" src="{{ hengst.hengst_image.url }}">
-      </div>
-      <div class="col-lg-9" style="padding-top: 5px;">
-        <table style="margin-left:auto;margin-right:auto;">
-            <tbody>
-                <tr>
-                    <td>Stokmaat: </td>
-                    <td>{{ hengst.stokmaat }} cm</td>
-                </tr>
-                <tr>
-                    <td>Kleur: </td>
-                    <td>{{ hengst.kleur }}</td>
-                </tr>
-            </tbody>
-        </table>
-        <p></p>
-        <p class="article-content text-justify">{{ hengst.hengst_content }}</p>
-      </div>
-    </div>
-  </div>
-</article>
-<br><br>
-<div class="container">
-  <div class="row">
-    <div class="col-lg-3">
-    </div>
-    <div class="container blogstyle">
+<div class="col-lg-5">
+    <article class="content-section blogstyle shadow-lg col-lg-12">
+      <div class="container">
         <div class="row">
-            <div class="col-lg-3">
-
-            </div>
-            <div class="col-lg-6">
-                <div class="col-lg-12 shadow-lg" style="overflow-x: auto">
-      <table class="justify-content-center">
-          <tbody>
-                <tr>
-                  <th class="text-center">Pony</th>
-                  <th class="text-center">Ouders</th>
-                  <th class="text-center">Grootouders</th>
-                </tr>
-
-                <tr>
-                  <td style="padding-top: 6px;"></td>
-                  <td style="padding-top: 6px;"></td>
-                  <td class="line-bottom" style="padding-top: 6px;" href="{% url 'hengst-detail' hengst.id %}">{{ hengst.fatherfather_name }}</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td class="line-bottom" href="{% url 'hengst-detail' hengst.id %}">{{ hengst.father_name }}</td>
-                  <td class="line-left-down"></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td class="line-left-down"></td>
-                  <td class="line-bottom line-left-down" href="{% url 'hengst-detail' hengst.id %}">{{ hengst.fathermother_name }}</td>
-                </tr>
-                <tr>
-                  <td class="line-bottom" href={% url 'hengst-detail' hengst.id %}">{{ hengst.hengst_title }}</td>
-                  <td class="line-left-down"></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td class="line-left-down"></td>
-                  <td class="line-bottom"  href="{% url 'hengst-detail' hengst.id %}">{{ hengst.motherfather_name }}</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td class="line-bottom line-left-down" href="{% url 'hengst-detail' hengst.id %}">{{ hengst.mother_name }}</td>
-                  <td class="line-left-down"></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td class="line-bottom line-left-down" href="{% url 'hengst-detail' hengst.id %}">{{ hengst.mothermother_name }}</td>
-                </tr>
-          </tbody>
-      </table>
-    </div>
-
-            </div>
+          <div class="col-lg-12 text-center" style="border-bottom: 3px solid #9db0da;">
+            <h2><a style="color: white;" href="{% url 'hengst-detail' hengst.id %}">{{ hengst.hengst_title }}</a></h2>
+          </div>
         </div>
-    </div>
+        <div class="row">
+          <div class="media col-lg-12">
+            <img class="img-fluid mx-auto rounded25 imagestyle" style="padding-top: 10px;" src="{{ hengst.hengst_image.url }}">
+          </div>
+          <div class="col-lg-12" style="padding-top: 5px;" >
+            <table style="margin-left:auto;margin-right:auto;">
+                <tbody>
+                    <tr>
+                        <td>Stokmaat: </td>
+                        <td>{{ hengst.stokmaat }} cm</td>
+                    </tr>
+                    <tr>
+                        <td>Kleur: </td>
+                        <td>{{ hengst.kleur }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="article-content text-justify" style="height:130px; overflow-y: auto; border-top: 2px solid #9db0da; padding-top: 10px;"> {{ hengst.hengst_content }}</p>
+          </div>
+        </div>
+            <p>
+                  <button class="buttonstyle" type="button" data-toggle="collapse" data-target="#collapseExample{{ hengst.id }}" aria-expanded="false" aria-controls="collapseExample">
+                    Stamboom
+                  </button>
+            </p>
+            <div class="collapse" id="collapseExample{{ hengst.id }}">
+                <article class="content-section shadow-lg col-lg-12">
+                    <div class="container">
+                         <div class="row">
+                                <div class="col-lg-12 shadow-lg" style="overflow-x: auto">
+                                      <table class="justify-content-center">
+                                          <tbody>
+                                                <br>
+                                                <tr>
+                                                  <th class="text-center">Hengst</th>
+                                                  <th class="text-center">Ouders</th>
+                                                  <th class="text-center">Grootouders</th>
+                                                </tr>
 
-    <div class="col-lg-3">
-    </div>
-  </div>
+                                                <tr>
+                                                  <td style="padding-top: 6px;"></td>
+                                                  <td style="padding-top: 6px;"></td>
+                                                  <td class="line-bottom" style="padding-top: 6px;" href="{% url 'hengst-detail' hengst.id %}">{{ hengst.fatherfather_name }}</td>
+                                                </tr>
+                                                <tr>
+                                                  <td></td>
+                                                  <td class="line-bottom" href="{% url 'hengst-detail' hengst.id %}">{{ hengst.father_name }}</td>
+                                                  <td class="line-left-down"></td>
+                                                </tr>
+                                                <tr>
+                                                  <td></td>
+                                                  <td class="line-left-down"></td>
+                                                  <td class="line-bottom line-left-down" href="{% url 'hengst-detail' hengst.id %}">{{ hengst.fathermother_name }}</td>
+                                                </tr>
+                                                <tr>
+                                                  <td class="line-bottom" href="{% url 'hengst-detail' hengst.id %}">{{ hengst.hengst_title }}</td>
+                                                  <td class="line-left-down"></td>
+                                                  <td></td>
+                                                </tr>
+                                                <tr>
+                                                  <td></td>
+                                                  <td class="line-left-down"></td>
+                                                  <td class="line-bottom"  href="{% url 'hengst-detail' hengst.id %}">{{ hengst.motherfather_name }}</td>
+                                                </tr>
+                                                <tr>
+                                                  <td></td>
+                                                  <td class="line-bottom line-left-down" href="{% url 'hengst-detail' hengst.id %}">{{ hengst.mother_name }}</td>
+                                                  <td class="line-left-down"></td>
+                                                </tr>
+                                                <tr>
+                                                  <td></td>
+                                                  <td></td>
+                                                  <td class="line-bottom line-left-down" href="{% url 'hengst-detail' hengst.id %}">{{ hengst.mothermother_name }}</td>
+                                                </tr>
+                                          </tbody>
+                                      </table>
+                                </div>
+                         </div>
+                    </div>
+                </article>
+            </div>
+      </div>
+
+    </article>
+    <br>
 </div>
-<br>
+{% endfor %}
 
 
 
-    {% endfor %}
+    </div>
+</div>
+<div class="shadow-lg col-lg-12 d-flex justify-content-center">
     {% if is_paginated %}
 
       {% if page_obj.has_previous %}
-        <a class="btn btn-secondary mb-4" href="?page=1">First</a>
-        <a class="btn btn-secondary mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        <a class="buttonstyle" href="?page=1">Eerste</a>
+        <a class="buttonstyle" href="?page={{ page_obj.previous_page_number }}">Laatste</a>
       {% endif %}
 
       {% for num in page_obj.paginator.page_range %}
         {% if page_obj.number == num %}
-          <a class="btn btn-secondary mb-4" href="?page={{ num }}">{{ num }}</a>
+          <a class="buttonstyle" href="?page={{ num }}">{{ num }}</a>
         {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-          <a class="btn btn-secondary mb-4" href="?page={{ num }}">{{ num }}</a>
+          <a class="buttonstyle" href="?page={{ num }}">{{ num }}</a>
         {% endif %}
       {% endfor %}
 
       {% if page_obj.has_next %}
-        <a class="btn btn-secondary mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
-        <a class="btn btn-secondary mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+        <a class="buttonstyle" href="?page={{ page_obj.next_page_number }}">Volgende</a>
+        <a class="buttonstyle" href="?page={{ page_obj.paginator.num_pages }}">Laatste</a>
       {% endif %}
 
     {% endif %}
+</div>
 
 {% endblock content %}

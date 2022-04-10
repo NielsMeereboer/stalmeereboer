@@ -2,7 +2,9 @@
 {% load static %}
 {% block content %}
 <!--Carousel Wrapper-->
-<div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
+<br><br>
+<div class="blogstyle">
+    <div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
     <!--Indicators-->
     <ol class="carousel-indicators">
     {% for p in photos %}
@@ -14,7 +16,7 @@
     <div class="carousel-inner" role="listbox">
       {% for p in photos %}
       <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}">
-        <img class="d-block w-100" src="{{p.images.url}}"
+        <img class="d-block w-100 rounded25" src="{{p.images.url}}"
           alt="First slide">
       </div>
       {% endfor %}
@@ -31,5 +33,7 @@
     </a>
     <!--/.Controls-->
   </div>
+</div>
+
 
   {% endblock %}

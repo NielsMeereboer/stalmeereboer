@@ -5,10 +5,13 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-5 blogstyle">
-            <img class="col-lg-12 rounded25" src="{% static 'stalmeereboer/images/thuis.jpg' %}" alt="Paardenstal">
+            <div class="d-flex justify-content-center">
+                <img class="img-fluid rounded25 imagestyle" style="height:250px;" src="{% static 'stalmeereboer/images/background_day.jpg' %}" alt="Paardenstal">
+            </div>
+
             <div class="col-lg-12">
                 <br>
-                <h3>Adres:</h3>
+                <h3 style="border-bottom: 3px solid #9db0da;">Adres</h3>
                 <h4>Stal Meereboer <br>Dorpsstraat 4a<br>9537 TC Eesergroen<br>0653992298</h4>
             </div>
         </div>
@@ -33,7 +36,7 @@
                           <textarea rows="7" name="message" class="form-control mb-30" placeholder="Uw bericht"></textarea>
                       </div>
                       <div class="col-12">
-                          <button type="submit" class="btn waves-effect waves-light">Verzend</button>
+                          <button type="submit" class="buttonstyle">Verzend</button>
                       </div>
                   </div>
                 </form>

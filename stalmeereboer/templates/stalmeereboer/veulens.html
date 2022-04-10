@@ -1,6 +1,130 @@
 {% extends "stalmeereboer/base.html" %}
 {% load static %}
 {% block content %}
+<br>
+<br>
+<div class="container">
+    <div class="row justify-content-center">
+{% for veulen in veulens %}
+<br>
+<div class="col-lg-5">
+    <article class="content-section blogstyle shadow-lg col-lg-12">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center" style="border-bottom: 3px solid #9db0da;">
+            <h2><a style="color: white;" href="{% url 'veulen-detail' veulen.id %}">{{ veulen.veulen_title }}</a></h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="media col-lg-12">
+            <img class="img-fluid mx-auto rounded25 imagestyle" style="padding-top: 10px;" src="{{ veulen.veulen_image.url }}">
+          </div>
+          <div class="col-lg-12" style="padding-top: 5px;" >
+            <table style="margin-left:auto;margin-right:auto;">
+                <tbody>
+                    <tr>
+                        <td>Kleur: </td>
+                        <td>{{ veulen.kleur }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="article-content text-justify" style="height:130px; overflow-y: auto; border-top: 2px solid #9db0da; padding-top: 10px;"> {{ veulen.veulen_content }}</p>
+          </div>
+        </div>
+            <p>
+                  <button class="buttonstyle" type="button" data-toggle="collapse" data-target="#collapseExample{{ veulen.id }}" aria-expanded="false" aria-controls="collapseExample">
+                    Stamboom
+                  </button>
+            </p>
+            <div class="collapse" id="collapseExample{{ veulen.id }}">
+                <article class="content-section shadow-lg col-lg-12">
+                    <div class="container">
+                         <div class="row">
+                                <div class="col-lg-12 shadow-lg" style="overflow-x: auto">
+                                      <table class="justify-content-center">
+                                          <tbody>
+                                                <br>
+                                                <tr>
+                                                  <th class="text-center">Veulen</th>
+                                                  <th class="text-center">Ouders</th>
+                                                  <th class="text-center">Grootouders</th>
+                                                </tr>
 
+                                                <tr>
+                                                  <td style="padding-top: 6px;"></td>
+                                                  <td style="padding-top: 6px;"></td>
+                                                  <td class="line-bottom" style="padding-top: 6px;" href="{% url 'veulen-detail' veulen.id %}">{{ veulen.fatherfather_name }}</td>
+                                                </tr>
+                                                <tr>
+                                                  <td></td>
+                                                  <td class="line-bottom" href="{% url 'veulen-detail' veulen.id %}">{{ veulen.father_name }}</td>
+                                                  <td class="line-left-down"></td>
+                                                </tr>
+                                                <tr>
+                                                  <td></td>
+                                                  <td class="line-left-down"></td>
+                                                  <td class="line-bottom line-left-down" href="{% url 'veulen-detail' veulen.id %}">{{ veulen.fathermother_name }}</td>
+                                                </tr>
+                                                <tr>
+                                                  <td class="line-bottom" href="{% url 'veulen-detail' veulen.id %}">{{ veulen.veulen_title }}</td>
+                                                  <td class="line-left-down"></td>
+                                                  <td></td>
+                                                </tr>
+                                                <tr>
+                                                  <td></td>
+                                                  <td class="line-left-down"></td>
+                                                  <td class="line-bottom"  href="{% url 'veulen-detail' veulen.id %}">{{ veulen.motherfather_name }}</td>
+                                                </tr>
+                                                <tr>
+                                                  <td></td>
+                                                  <td class="line-bottom line-left-down" href="{% url 'veulen-detail' veulen.id %}">{{ veulen.mother_name }}</td>
+                                                  <td class="line-left-down"></td>
+                                                </tr>
+                                                <tr>
+                                                  <td></td>
+                                                  <td></td>
+                                                  <td class="line-bottom line-left-down" href="{% url 'veulen-detail' veulen.id %}">{{ veulen.mothermother_name }}</td>
+                                                </tr>
+                                          </tbody>
+                                      </table>
+                                </div>
+                         </div>
+                    </div>
+                </article>
+            </div>
+      </div>
+
+    </article>
+    <br>
+</div>
+{% endfor %}
+
+
+
+    </div>
+</div>
+<div class="shadow-lg col-lg-12 d-flex justify-content-center">
+    {% if is_paginated %}
+
+      {% if page_obj.has_previous %}
+        <a class="buttonstyle" href="?page=1">Eerste</a>
+        <a class="buttonstyle" href="?page={{ page_obj.previous_page_number }}">Laatste</a>
+      {% endif %}
+
+      {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+          <a class="buttonstyle" href="?page={{ num }}">{{ num }}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+          <a class="buttonstyle" href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <a class="buttonstyle" href="?page={{ page_obj.next_page_number }}">Volgende</a>
+        <a class="buttonstyle" href="?page={{ page_obj.paginator.num_pages }}">Laatste</a>
+      {% endif %}
+
+    {% endif %}
+</div>
 
 {% endblock content %}

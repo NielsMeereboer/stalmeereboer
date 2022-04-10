@@ -5,42 +5,46 @@
 <br>
 <div class="container">
     <div class="row justify-content-center">
-{% for merrie in merries %}
+{% for paard in paarden %}
 <br>
 <div class="col-lg-5">
     <article class="content-section blogstyle shadow-lg col-lg-12">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center" style="border-bottom: 3px solid #9db0da;">
-            <h2><a style="color: white;" href="{% url 'merrie-detail' merrie.id %}">{{ merrie.merrie_title }}</a></h2>
+            <h2><a style="color: white;" href="{% url 'paard-detail' paard.id %}">{{ paard.paard_title }}</a></h2>
           </div>
         </div>
         <div class="row">
           <div class="media col-lg-12">
-            <img class="img-fluid mx-auto rounded25 imagestyle" style="padding-top: 10px;" src="{{ merrie.merrie_image.url }}">
+            <img class="img-fluid mx-auto rounded25 imagestyle" style="padding-top: 10px;" src="{{ paard.paard_image.url }}">
           </div>
           <div class="col-lg-12" style="padding-top: 5px;" >
             <table style="margin-left:auto;margin-right:auto;">
                 <tbody>
                     <tr>
-                        <td>Stokmaat: </td>
-                        <td>{{ merrie.stokmaat }} cm</td>
+                        <td>Kleur: </td>
+                        <td>{{ paard.kleur }}</td>
                     </tr>
                     <tr>
-                        <td>Kleur: </td>
-                        <td>{{ merrie.kleur }}</td>
+                        <td>Geboortedatum: </td>
+                        <td>{{ paard.geboortedatum }}</td>
+                    </tr>
+                    <tr>
+                        <td>Stokmaat: </td>
+                        <td>{{ paard.stokmaat }}</td>
                     </tr>
                 </tbody>
             </table>
-            <p class="article-content text-justify" style="height:130px; overflow-y: auto; border-top: 2px solid #9db0da; padding-top: 10px;"> {{ merrie.merrie_content }}</p>
+            <p class="article-content text-justify" style="height:130px; overflow-y: auto; border-top: 2px solid #9db0da; padding-top: 10px;"> {{ paard.paard_content }}</p>
           </div>
         </div>
             <p>
-                  <button class="buttonstyle" type="button" data-toggle="collapse" data-target="#collapseExample{{ merrie.id }}" aria-expanded="false" aria-controls="collapseExample">
+                  <button class="buttonstyle" type="button" data-toggle="collapse" data-target="#collapseExample{{ paard.id }}" aria-expanded="false" aria-controls="collapseExample">
                     Stamboom
                   </button>
             </p>
-            <div class="collapse" id="collapseExample{{ merrie.id }}">
+            <div class="collapse" id="collapseExample{{ paard.id }}">
                 <article class="content-section shadow-lg col-lg-12">
                     <div class="container">
                          <div class="row">
@@ -49,7 +53,7 @@
                                           <tbody>
                                                 <br>
                                                 <tr>
-                                                  <th class="text-center">Merrie</th>
+                                                  <th class="text-center">Paard</th>
                                                   <th class="text-center">Ouders</th>
                                                   <th class="text-center">Grootouders</th>
                                                 </tr>
@@ -57,37 +61,37 @@
                                                 <tr>
                                                   <td style="padding-top: 6px;"></td>
                                                   <td style="padding-top: 6px;"></td>
-                                                  <td class="line-bottom" style="padding-top: 6px;" href="{% url 'merrie-detail' merrie.id %}">{{ merrie.fatherfather_name }}</td>
+                                                  <td class="line-bottom" style="padding-top: 6px;" href="{% url 'paard-detail' paard.id %}">{{ paard.fatherfather_name }}</td>
                                                 </tr>
                                                 <tr>
                                                   <td></td>
-                                                  <td class="line-bottom" href="{% url 'merrie-detail' merrie.id %}">{{ merrie.father_name }}</td>
+                                                  <td class="line-bottom" href="{% url 'paard-detail' paard.id %}">{{ paard.father_name }}</td>
                                                   <td class="line-left-down"></td>
                                                 </tr>
                                                 <tr>
                                                   <td></td>
                                                   <td class="line-left-down"></td>
-                                                  <td class="line-bottom line-left-down" href="{% url 'merrie-detail' merrie.id %}">{{ merrie.fathermother_name }}</td>
+                                                  <td class="line-bottom line-left-down" href="{% url 'paard-detail' paard.id %}">{{ paard.fathermother_name }}</td>
                                                 </tr>
                                                 <tr>
-                                                  <td class="line-bottom" href="{% url 'merrie-detail' merrie.id %}">{{ merrie.merrie_title }}</td>
+                                                  <td class="line-bottom" href="{% url 'paard-detail' paard.id %}">{{ paard.paard_title }}</td>
                                                   <td class="line-left-down"></td>
                                                   <td></td>
                                                 </tr>
                                                 <tr>
                                                   <td></td>
                                                   <td class="line-left-down"></td>
-                                                  <td class="line-bottom"  href="{% url 'merrie-detail' merrie.id %}">{{ merrie.motherfather_name }}</td>
+                                                  <td class="line-bottom"  href="{% url 'paard-detail' paard.id %}">{{ paard.motherfather_name }}</td>
                                                 </tr>
                                                 <tr>
                                                   <td></td>
-                                                  <td class="line-bottom line-left-down" href="{% url 'merrie-detail' merrie.id %}">{{ merrie.mother_name }}</td>
+                                                  <td class="line-bottom line-left-down" href="{% url 'paard-detail' paard.id %}">{{ paard.mother_name }}</td>
                                                   <td class="line-left-down"></td>
                                                 </tr>
                                                 <tr>
                                                   <td></td>
                                                   <td></td>
-                                                  <td class="line-bottom line-left-down" href="{% url 'merrie-detail' merrie.id %}">{{ merrie.mothermother_name }}</td>
+                                                  <td class="line-bottom line-left-down" href="{% url 'paard-detail' paard.id %}">{{ paard.mothermother_name }}</td>
                                                 </tr>
                                           </tbody>
                                       </table>

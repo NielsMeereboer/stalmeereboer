@@ -21,7 +21,16 @@ from .views import (
     MerrieCreateView,
     MerrieUpdateView,
     MerrieDeleteView,
-
+    VeulenListView,
+    VeulenDetailView,
+    VeulenCreateView,
+    VeulenUpdateView,
+    VeulenDeleteView,
+    PaardListView,
+    PaardDetailView,
+    PaardCreateView,
+    PaardUpdateView,
+    PaardDeleteView,
 
 
 )
@@ -52,5 +61,14 @@ urlpatterns = [
     path('merrie/new/', MerrieCreateView.as_view(), name='merrie-create'),
     path('merrie/<int:pk>/update/', MerrieUpdateView.as_view(), name='merrie-update'),
     path('merrie/<int:pk>/delete/', MerrieDeleteView.as_view(), name='merrie-delete'),
-
+    path('veulens/', VeulenListView.as_view(), name='stalmeereboer-veulens'),
+    path('veulen/<int:pk>/', VeulenDetailView.as_view(), name='veulen-detail'),
+    path('veulen/new/', VeulenCreateView.as_view(), name='veulen-create'),
+    path('veulen/<int:pk>/update/', VeulenUpdateView.as_view(), name='veulen-update'),
+    path('veulen/<int:pk>/delete/', VeulenDeleteView.as_view(), name='veulen-delete'),
+    path('paarden/', PaardListView.as_view(), name='stalmeereboer-paarden'),
+    path('paard/<int:pk>/', PaardDetailView.as_view(), name='paard-detail'),
+    path('paard/new/', PaardCreateView.as_view(), name='paard-create'),
+    path('paard/<int:pk>/update/', PaardUpdateView.as_view(), name='paard-update'),
+    path('paard/<int:pk>/delete/', PaardDeleteView.as_view(), name='paard-delete'),
 ]

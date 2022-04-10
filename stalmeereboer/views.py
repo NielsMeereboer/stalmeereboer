@@ -1,6 +1,7 @@
 from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.core.paginator import Paginator
 from django.views.generic import (
     ListView,
     DetailView,
@@ -8,7 +9,7 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
-from .models import Post, Hengst, Sale, PostImage, About, Merrie
+from .models import Post, Hengst, Sale, PostImage, About, Merrie, Veulen, Paard
 
 
 def home(request):
@@ -151,7 +152,18 @@ class HengstDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 def sale_view(request):
     sales = Sale.objects.all()
-    return render(request, 'stalmeereboer/verkoop.html', {'sales': sales})
+
+    sale_paginator = Paginator(sales, 2)
+
+    page_num = request.GET.get('page')
+
+    page = sale_paginator.get_page(page_num)
+    context = {
+        'count': sale_paginator.count,
+        'page': page
+
+    }
+    return render(request, 'stalmeereboer/verkoop.html', context)
 
 
 def detail_view(request, id):
@@ -208,6 +220,59 @@ class AboutDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return False
 
 
+def veulens(request):
+    context = {'veulens': Veulen.objects.all()}
+    return render(request, 'stalmeereboer/veulens.html', context)
+
+
+class VeulenListView(ListView):
+    model = Veulen
+    template_name = 'stalmeereboer/veulens.html'  # <app>/<model>_<viewtype>.html
+    context_object_name = 'veulens'
+    paginate_by = 2
+
+
+class VeulenDetailView(DetailView):
+    model = Veulen
+
+
+class VeulenCreateView(LoginRequiredMixin, CreateView):
+    model = Veulen
+    fields = ['veulen_image', 'title', 'kleur', 'content', 'father_name', 'mother_name',
+              'fatherfather_name', 'fathermother_name', 'motherfather_name', 'mothermother_name']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+
+class VeulenUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Veulen
+    fields = ['veulen_image', 'title', 'kleur', 'content', 'father_name', 'mother_name',
+              'fatherfather_name', 'fathermother_name', 'motherfather_name', 'mothermother_name']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
+
+
+class VeulenDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Veulen
+    success_url = '/'
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
+
+
 def merries(request):
     context = {'merries': Merrie.objects.all()}
     return render(request, 'stalmeereboer/merries.html', context)
@@ -217,7 +282,7 @@ class MerrieListView(ListView):
     model = Merrie
     template_name = 'stalmeereboer/merries.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'merries'
-    paginate_by = 1
+    paginate_by = 2
 
 
 class MerrieDetailView(DetailView):
@@ -252,6 +317,59 @@ class MerrieUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class MerrieDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Merrie
+    success_url = '/'
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
+
+
+def paarden(request):
+    context = {'paarden': Paard.objects.all()}
+    return render(request, 'stalmeereboer/veulens.html', context)
+
+
+class PaardListView(ListView):
+    model = Paard
+    template_name = 'stalmeereboer/paarden.html'  # <app>/<model>_<viewtype>.html
+    context_object_name = 'paarden'
+    paginate_by = 2
+
+
+class PaardDetailView(DetailView):
+    model = Paard
+
+
+class PaardCreateView(LoginRequiredMixin, CreateView):
+    model = Paard
+    fields = ['paard_image', 'title', 'kleur', 'geslacht', 'geboortedatum', 'content', 'stokmaat', 'father_name',
+              'mother_name', 'fatherfather_name', 'fathermother_name', 'motherfather_name', 'mothermother_name']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+
+class PaardUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Paard
+    fields = ['paard_image', 'title', 'kleur', 'geslacht', 'geboortedatum', 'content', 'stokmaat', 'father_name',
+              'mother_name', 'fatherfather_name', 'fathermother_name', 'motherfather_name', 'mothermother_name']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
+
+
+class PaardDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Paard
     success_url = '/'
 
     def test_func(self):

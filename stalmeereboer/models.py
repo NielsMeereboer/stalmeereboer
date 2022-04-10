@@ -20,8 +20,8 @@ class Post(models.Model):
         super().save(*args, **kwargs)
         img = Image.open(self.header_image.path)
 
-        if img.width > 300:
-            output_size = (300, 300)
+        if img.width > 450:
+            output_size = (450, 450)
             img.thumbnail(output_size)
             img.save(self.header_image.path)
 
@@ -66,6 +66,12 @@ class Sale(models.Model):
     prijs = models.CharField(max_length=100, default='SOME STRING')
     description = models.TextField()
     image = models.ImageField(blank=True)
+    father_name = models.CharField(max_length=100, default='SOME STRING')
+    mother_name = models.CharField(max_length=100, default='SOME STRING')
+    fatherfather_name = models.CharField(max_length=100, default='SOME STRING')
+    fathermother_name = models.CharField(max_length=100, default='SOME STRING')
+    motherfather_name = models.CharField(max_length=100, default='SOME STRING')
+    mothermother_name = models.CharField(max_length=100, default='SOME STRING')
 
     def __str__(self):
         return self.title
@@ -82,8 +88,8 @@ class PostImage(models.Model):
         super().save(*args, **kwargs)
         img = Image.open(self.images.path)
 
-        if img.width > 600:
-            output_size = (600, 600)
+        if img.width > 300:
+            output_size = (300, 300)
             img.thumbnail(output_size)
             img.save(self.images.path)
 
@@ -138,3 +144,64 @@ class Merrie(models.Model):
 
     def get_absolute_url(self):
         return reverse('merrie-detail', kwargs={'pk': self.pk})
+
+
+class Veulen(models.Model):
+    veulen_title = models.CharField(max_length=100)
+    veulen_image = models.ImageField(null=True, blank=True, upload_to="veulenimages/")
+    veulen_content = models.TextField()
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    kleur = models.CharField(max_length=100, default='SOME STRING')
+    father_name = models.CharField(max_length=100, default='SOME STRING')
+    mother_name = models.CharField(max_length=100, default='SOME STRING')
+    fatherfather_name = models.CharField(max_length=100, default='SOME STRING')
+    fathermother_name = models.CharField(max_length=100, default='SOME STRING')
+    motherfather_name = models.CharField(max_length=100, default='SOME STRING')
+    mothermother_name = models.CharField(max_length=100, default='SOME STRING')
+
+    def __str__(self):
+        return self.veulen_title
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        img = Image.open(self.veulen_image.path)
+
+        if img.width > 300:
+            output_size = (300, 300)
+            img.thumbnail(output_size)
+            img.save(self.veulen_image.path)
+
+    def get_absolute_url(self):
+        return reverse('veulen-detail', kwargs={'pk': self.pk})
+
+
+class Paard(models.Model):
+    paard_title = models.CharField(max_length=100)
+    paard_image = models.ImageField(null=True, blank=True, upload_to="paardimages/")
+    paard_content = models.TextField()
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    geslacht = models.CharField(max_length=100, default='SOME STRING')
+    geboortedatum = models.CharField(max_length=100, default='DD-MM-YYYY')
+    kleur = models.CharField(max_length=100, default='SOME STRING')
+    stokmaat = models.CharField(max_length=100, default='SOME STRING')
+    father_name = models.CharField(max_length=100, default='SOME STRING')
+    mother_name = models.CharField(max_length=100, default='SOME STRING')
+    fatherfather_name = models.CharField(max_length=100, default='SOME STRING')
+    fathermother_name = models.CharField(max_length=100, default='SOME STRING')
+    motherfather_name = models.CharField(max_length=100, default='SOME STRING')
+    mothermother_name = models.CharField(max_length=100, default='SOME STRING')
+
+    def __str__(self):
+        return self.paard_title
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        img = Image.open(self.paard_image.path)
+
+        if img.width > 300:
+            output_size = (300, 300)
+            img.thumbnail(output_size)
+            img.save(self.paard_image.path)
+
+    def get_absolute_url(self):
+        return reverse('paard-detail', kwargs={'pk': self.pk})
