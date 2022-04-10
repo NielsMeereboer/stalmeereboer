@@ -71,4 +71,6 @@ urlpatterns = [
     path('paard/new/', PaardCreateView.as_view(), name='paard-create'),
     path('paard/<int:pk>/update/', PaardUpdateView.as_view(), name='paard-update'),
     path('paard/<int:pk>/delete/', PaardDeleteView.as_view(), name='paard-delete'),
+    path('nieuws/', views.nieuws_view, name='nieuws'),
+    path('nieuws/<int:id>/', views.nieuwsdetail_view, name='nieuws-detail'),
 ]

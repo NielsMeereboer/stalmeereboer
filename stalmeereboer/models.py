@@ -205,3 +205,30 @@ class Paard(models.Model):
 
     def get_absolute_url(self):
         return reverse('paard-detail', kwargs={'pk': self.pk})
+
+
+class Nieuws(models.Model):
+    title = models.CharField(max_length=250)
+    content = models.TextField()
+    image = models.ImageField(blank=True)
+    date_posted = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.title
+
+
+class NieuwsImage(models.Model):
+    nieuws = models.ForeignKey(Nieuws, default=None, on_delete=models.CASCADE)
+    images = models.ImageField(upload_to='newsimages/')
+
+    def __str__(self):
+        return self.nieuws.title
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        img = Image.open(self.images.path)
+
+        if img.width > 1000:
+            output_size = (1000, 1000)
+            img.thumbnail(output_size)
+            img.save(self.images.path)

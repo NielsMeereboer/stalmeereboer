@@ -1,0 +1,64 @@
+{% extends "stalmeereboer/base.html" %}
+{% load static %}
+{% block content %}
+<br>
+<br>
+<div class="container">
+    <div class="row justify-content-center">
+        {% for nieuws in page.object_list %}
+        <br>
+        <div class="col-lg-5">
+            <article class="content-section blogstyle shadow-lg col-lg-12">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-12 text-center" style="border-bottom: 3px solid #9db0da;">
+                    <h2><a style="color: white;" href="{% url 'nieuws-detail' nieuws.id %}">{{ nieuws.title }}</a></h2>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="media col-lg-12">
+                    <img class="img-fluid mx-auto rounded25 imagestyle" style="padding-top: 10px;" src="{{ nieuws.image.url }}">
+                  </div>
+                  <div class="col-lg-12" style="padding-top: 5px;" >
+                    <a >{{ nieuws.date_posted|date:"F d, Y" }}</a>
+                    <p class="article-content text-justify" style="height:130px; overflow-y: auto; border-top: 2px solid #9db0da; padding-top: 10px;"> {{ nieuws.content }}</p>
+                  </div>
+                </div>
+                    <p>
+                          <button class="buttonstyle">
+                              <a href="{% url 'nieuws-detail' nieuws.id %}" style="color: #343434;">Meer foto's</a>
+                          </button>
+                    </p>
+              </div>
+
+            </article>
+            <br>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+
+
+    <div class="shadow-lg col-lg-12 d-flex justify-content-center">
+        {% if page.has_previous %}
+        <a class="buttonstyle" href="{% url 'nieuws' %}?page={{ page.previous_page_number }}">Vorige</a>
+        {% endif %}
+
+        {% for num in page.paginator.page_range %}
+        {% if page.number == num %}
+          <a class="buttonstyle" href="?page={{ num }}">{{ num }}</a>
+        {% elif num > page.number|add:'-3' and num < page.number|add:'3' %}
+          <a class="buttonstyle" href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+      {% endfor %}
+
+        {% if page.has_next %}
+        <a class="buttonstyle" href="{% url 'nieuws' %}?page={{ page.next_page_number }}">Volgende</a>
+        {% endif %}
+    </div>
+
+{% endblock content %}
+

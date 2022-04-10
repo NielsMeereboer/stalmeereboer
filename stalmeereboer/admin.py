@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Hengst, Sale, PostImage, About, Merrie, Veulen, Paard
+from .models import Post, Hengst, Sale, PostImage, About, Merrie, Veulen, Paard, NieuwsImage, Nieuws
 
 admin.site.register(Post)
 admin.site.register(Hengst)
@@ -24,4 +24,21 @@ class PostAdmin(admin.ModelAdmin):
 
 @admin.register(PostImage)
 class PostImageAdmin(admin.ModelAdmin):
+    pass
+
+
+class NieuwsImageAdmin(admin.StackedInline):
+    model = NieuwsImage
+
+
+@admin.register(Nieuws)
+class NieuwsAdmin(admin.ModelAdmin):
+    inlines = [NieuwsImageAdmin]
+
+    class Meta:
+        model = Nieuws
+
+
+@admin.register(NieuwsImage)
+class NieuwsImageAdmin(admin.ModelAdmin):
     pass

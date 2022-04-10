@@ -9,7 +9,7 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
-from .models import Post, Hengst, Sale, PostImage, About, Merrie, Veulen, Paard
+from .models import Post, Hengst, Sale, PostImage, About, Merrie, Veulen, Paard, NieuwsImage, Nieuws
 
 
 def home(request):
@@ -377,3 +377,28 @@ class PaardDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == post.author:
             return True
         return False
+
+
+def nieuws_view(request):
+    nieuwss = Nieuws.objects.all().order_by('-date_posted')
+
+    nieuws_paginator = Paginator(nieuwss, 2)
+
+    page_num = request.GET.get('page')
+
+    page = nieuws_paginator.get_page(page_num)
+    context = {
+        'count': nieuws_paginator.count,
+        'page': page
+
+    }
+    return render(request, 'stalmeereboer/nieuws.html', context)
+
+
+def nieuwsdetail_view(request, id):
+    nieuws = get_object_or_404(Nieuws, id=id)
+    photos1 = NieuwsImage.objects.filter(nieuws=nieuws)
+    return render(request, 'stalmeereboer/nieuws_detail.html', {
+        'nieuws': nieuws,
+        'photos1': photos1
+    })
